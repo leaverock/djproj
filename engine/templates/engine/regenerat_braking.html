@@ -1,0 +1,10 @@
+{% if xap %}
+    <p>Характеристики рекуперативного торможения:</p>
+    <ul>
+    {% for x in xap %}
+        <li>Позиция: <a href= "/engine/report/regenerat_braking/xap/{{ x.id }}/">{{ x.PozNam }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Не найдено характеристик рекуперативного торможения</p>
+{% endif %}

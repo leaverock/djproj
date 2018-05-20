@@ -1,0 +1,10 @@
+{% if xap %}
+    <p>Характеристики тягового режима:</p>
+    <ul>
+    {% for x in xap %}
+        <li>Позиция: <a href= "/engine/report/tract_mod/xap/{{ x.id }}/">{{ x.PozNam }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Не найдено характеристик тягового режима</p>
+{% endif %}

@@ -1,0 +1,29 @@
+﻿{% if locomotive %}
+    <p>Основные параметры локомотива:</p>
+    <ul>
+        <li>Vers: {{ locomotive.Vers }}</li>
+        <li>Серия, наименование: {{ locomotive.LocmTyp }}</li>
+        <li>Назначение, род службы: {{ locomotive.Rdnz }}</li>
+        <li>Номинальное напряжение, В: {{ locomotive.UTnom }}</li>
+        <li>Комментарий: {{ locomotive.Comment }}</li>
+        <li>Rsrv0: {{ locomotive.Rsrv0 }}</li>
+        <li>Мощность часового режима, кВт: {{ locomotive.Phor }}</li>
+        <li>Тип тягового двигателя: {{ locomotive.DvgNam }}</li>
+        <li>Масса, т: {{ locomotive.Ploc }}</li>
+        <li>Длина, м: {{ locomotive.Lloc }}</li>
+        <li>Конструкционная  скорость, км/ч: {{ locomotive.Vloc }}</li>
+        <li>Мощн. соб. нужд, кВт: {{ locomotive.Pbsm }}</li>
+        <li>Ток соб. нужд, А: {{ locomotive.Ibsm }}</li>
+        <li><a href="/engine/report/main_spec_resist_move/{{ locomotive.id }}/">Основное удельное сопротивление движению</a></li>
+        <li><a href="/engine/report/tract_mod/{{ locomotive.id }}/">Характеристики тягового режима{{ qLocmTyp }}</a></li>
+        <li><a href="/engine/report/regenerat_braking/{{ locomotive.id }}/">Характеристики рекуперативного торможения{{ qLocmTyp }}</a></li>
+        <li><a href="/engine/report/therm_engine/{{ locomotive.id }}/">Тепловые характеристики двигателя{{ qLocmTyp }}</a></li>
+        <li>Koefs: {{ locomotive.Koefs }}</li>
+        <li>Rsrv1: {{ locomotive.Rsrv1 }}</li>
+        <li>Rsrv2: {{ locomotive.Rsrv2 }}</li>
+        <li>Rsrv3: {{ locomotive.Rsrv3 }}</li>
+        <li>Rsrv4: {{ locomotive.Rsrv4 }}</li>
+    </ul>
+{% else %}
+    <p>Не найдено локомотива</p>
+{% endif %}

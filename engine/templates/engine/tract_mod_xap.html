@@ -1,0 +1,17 @@
+<p>Характеристики позиции: {{xap.PozNam}}</p>
+<table>
+    <tr>
+        <th>V км/ч</th>
+        <th>Тяга, кгс</th>
+        <th>Ток двигателя, А</th>
+        <th>Ток локомотива, А</th>
+        <th>Активный ток локомотива, А</th>
+    </tr>
+    {% for q in xap.Exap %}
+    <tr>
+        {% for w in q %}
+            <td>{{ w }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
