@@ -1,0 +1,10 @@
+﻿{% if uch %}
+    <p>Участки:</p>
+    <ul>
+    {% for u in uch %}
+        <li>Имя участка: <a href="/track/report/{{ u.id }}/">{{ u.UchNam }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Не найдено участков</p>
+{% endif %}

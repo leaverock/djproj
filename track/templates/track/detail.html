@@ -1,0 +1,39 @@
+﻿{% if uch %}
+    <p>Параметры участка:</p>
+    <ul>
+        <li>Код дороги: {{ uch.KodDor }}</li>
+        <li>Код участка: {{ uch.KodUch}}</li>
+        <li>Наименование дороги: {{ uch.DorNam }}</li>
+        <li>Наименование участка: {{ uch.UchNam }}</li>
+        <li>Комментарий: {{ uch.Comment }}</li>
+        <li>RsrvU1: {{ uch.RsrvU1 }}</li>
+        <li>Файл версии: {{ uch.VersFile }}</li>
+        <li>Версия программы: {{ uch.VersProg }}</li>
+        <li>mGput: {{ uch.mGput }}</li>
+        <li>Difl: {{ uch.Difl }}</li>
+        <li>RsrvU2: {{ uch.RsrvU2 }}</li>
+        <li>mStan: {{ uch.mStan }}</li>
+        <li><a href="/track/report/sep_points/{{ uch.id }}/">Раздельные пункты</a></li>
+        <li>NechSt: {{ uch.NechSt }}</li>
+        <li>mCtg: {{ uch.mCtg }}</li>
+        <li><a href="/track/report/ctgs_types_train/{{ uch.id }}/">Категории и типы поездов</a></li>
+        <li>mVorp: {{ uch.mVorp }}</li>
+        <li>VorpMx: {{ uch.VorpMx }}</li>
+        <li><a href="/track/report/speed_limits/{{ uch.id }}/">Ограничения скорости</a></li>
+
+        <!--
+        <li>Ток соб. нужд, А: {{ uch.Ibsm }}</li>
+        <li><a href="/engine/report/main_spec_resist_move/{{ uch.id }}/">Основное удельное сопротивление движению</a></li>
+        <li><a href="/engine/report/tract_mod/{{ uch.id }}/">Характеристики тягового режима{{ qLocmTyp }}</a></li>
+        <li><a href="/engine/report/regenerat_braking/{{ uch.id }}/">Характеристики рекуперативного торможения{{ qLocmTyp }}</a></li>
+        <li><a href="/engine/report/therm_engine/{{ uch.id }}/">Тепловые характеристики двигателя{{ qLocmTyp }}</a></li>
+        <li>Koefs: {{ uch.Koefs }}</li>
+        <li>Rsrv1: {{ uch.Rsrv1 }}</li>
+        <li>Rsrv2: {{ uch.Rsrv2 }}</li>
+        <li>Rsrv3: {{ uch.Rsrv3 }}</li>
+        <li>Rsrv4: {{ uch.Rsrv4 }}</li>
+        -->
+    </ul>
+{% else %}
+    <p>Не найдено участка</p>
+{% endif %}

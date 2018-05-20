@@ -1,0 +1,27 @@
+{% if categs %}
+    <p>Категории и типы поездов:</p>
+    <table>
+    <tr>
+        <th>Категории</th>
+        <th>PutSpec</th>
+        <th>RsrvC1</th>
+        <th>Массы составов (т) по направлениям</th>
+    </tr>
+    {% for x in categs %}
+    <tr>
+        <td>{{ x.CatgNam }}</td>
+        <td>{{ x.PutSpec }}</td>
+        <td>{{ x.RsrvC1 }}</td>
+        <td>{{ x.TrTYP }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+<!--
+    {% for x in categs %}
+        <p>Массы составов (т) по направлениям для {{x.CatgNam}}</p>
+        {{x.TrTYP}}
+    {% endfor %}
+-->
+{% else %}
+    <p>Не найдено категорий и типов поездов</p>
+{% endif %}

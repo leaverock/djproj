@@ -1,0 +1,27 @@
+{% if stations %}
+    <p>Раздельные пункты:</p>
+    <table>
+    <tr>
+        <th>Наименование станции</th>
+        <th>Kod</th>
+        <th>Obg</th>
+        <th>MputPrg</th>
+        <th>RsrvS1</th>
+        <th>Координата на плане (по путям), км</th>
+        <th>Фактическая коорд./Длина след. перегона (по путям)</th>
+    </tr>
+    {% for x in stations %}
+    <tr>
+        <td>{{ x.Nam }}</td>
+        <td>{{ x.Kod }}</td>
+        <td>{{ x.Obg }}</td>
+        <td>{{ x.MputPrg }}</td>
+        <td>{{ x.RsrvS1 }}</td>
+        <td>{{ x.Kml.0 }}</td>
+        <td>{{ x.Kml.1 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+    <p>Не найдено раздельных пунктов</p>
+{% endif %}

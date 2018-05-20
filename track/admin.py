@@ -1,3 +1,6 @@
 from django.contrib import admin
+from track.models import UchSTRUCT, StansSTRUCT, CategSTRUCT
 
-# Register your models here.
+admin.site.register(UchSTRUCT)
+admin.site.register(StansSTRUCT)
+admin.site.register(CategSTRUCT)
