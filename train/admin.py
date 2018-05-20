@@ -1,3 +1,6 @@
 from django.contrib import admin
+from train.models import FlCctHDRstruct, CoctavSTRUCT, CcVgsSTRUCT
 
-# Register your models here.
+admin.site.register(FlCctHDRstruct)
+admin.site.register(CoctavSTRUCT)
+admin.site.register(CcVgsSTRUCT)
