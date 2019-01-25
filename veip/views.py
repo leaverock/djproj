@@ -9,5 +9,7 @@ def index(request):
 def vivod(request):
     sp = request.POST['speed']
     rad = request.POST['radius']
+    with open(r'C:\Users\yaroschuk.denis\Desktop\ФОРП СЕНДЕРКИН.txt', 'r') as file:
+        text = file.read()
 
-    return HttpResponse("скорость: %.3f is %s." % (sp, rad))
+    return HttpResponse(text)#"скорость: %.3f is %.3f." % (float(sp), float(rad)))
