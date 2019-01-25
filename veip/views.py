@@ -7,6 +7,7 @@ def index(request):
     return render(request, 'veip\\index.html', context)
 
 def vivod(request):
-    radius = request.POST['radius']
+    sp = request.POST['speed']
+    rad = request.POST['radius']
 
-    return HttpResponse("Radius is %s." % radius)
+    return HttpResponse("скорость: %.3f is %s." % (sp, rad))
