@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Параметры VEIP</h1>
-    <form action="{% url 'veip:vivod' %}" method="post">
+    <form action="/veip/vivod/" method="post">
         {% csrf_token %}
         <input type="text" name="speed"/>
         <input type="text" name="radius"/>
