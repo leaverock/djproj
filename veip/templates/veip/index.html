@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VEIP</title>
+</head>
+<body>
+    <h1>Параметры VEIP</h1>
+    <form action="{% url 'veip:vivod' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="radius"/>
+        <button type="submit">GO</button>
+    </form>
+</body>
+</html>

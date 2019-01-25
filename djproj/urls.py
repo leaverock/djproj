@@ -19,5 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^track/', include('track.urls')),
     url(r'^engine/', include('engine.urls')),
+    url(r'^veip/', include('veip.urls')),
     url(r'^admin/', admin.site.urls),
 ]

@@ -25,7 +25,7 @@ SECRET_KEY = 'yj9brq0$_6pwx5zk99#eh46nv#_l$dmnk@4m%2n!iqqqbnfm1y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'track',
     'train',
     'vars_results'
+    'veip',
 ]
 
 MIDDLEWARE = [
