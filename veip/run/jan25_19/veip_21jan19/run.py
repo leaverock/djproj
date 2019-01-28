@@ -1,17 +1,30 @@
-from . import subprocess, dbg_run, pkg, log_file, work_dir
-import os, time
 from stat import *  # ST_SIZE etc
+import os, time
+import subprocess
+
+# dbg = True
+dbg = False
+start_time = None
+pkg = __package__
+#src_dir = r'C:\work\veip\djproj\veip\run\\'
+log_file_name = pkg + '.out'
+work_dir = r'./veip/run/'
+log_file = None
+
+def init():
+    global  log_file
+    log_file = open(work_dir + log_file_name, "w")
 
 def FileInfo (proc_name, file):
     try:
         st = os.stat(file)
     except IOError:
-        if dbg_run:
-            print ("%s: failed to get information about %s" % (proc_name, file), file=log_file)
+        if dbg:
+            print("%s: failed to get information about %s" % (proc_name, file), file=log_file)
         return False
     else:
-        if dbg_run:
-            print( "%s: file '%17s' - size: %6d, modified: %s" %
+        if dbg:
+            print("%s: file '%17s' - size: %6d, modified: %s" %
                (proc_name, file, st[ST_SIZE], time.asctime(time.localtime(st[ST_MTIME]))), file=log_file)
         return st[ST_SIZE] > 0
 
@@ -36,7 +49,7 @@ class Run (object):
             exit(7893)
             #return False
 
-        if dbg_run:
+        if dbg:
             print("%s.run: args: %s, returncode: %d, %.3f sec" %
                   (pkg, r.args, r.returncode, time.time() - self.start_time), file=log_file)
             if r.stdout: print("%s.run: stdout:\n'%s'" % (pkg, r.stdout.decode('cp1251')), file=log_file)
@@ -46,9 +59,11 @@ class Run (object):
             log_file.close()
             exit(7888)
         return not r.stderr
+
+
 class RunVEIP0:
-    def __init__(self):
-        self.r = Run('veip0.exe', work_dir, 0.2)
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip0.exe', work_dir, timeout)
 
     def result (self):
         r = self.r.result()
@@ -61,9 +76,9 @@ class RunVEIP0:
         r = r and FileInfo('RunVEIP0', work_dir + 'spkv')
         return r
 
-class RunVEIP1 (Run):
-    def __init__(self):
-        self.r = Run('veip1.exe', work_dir, 0.15)
+class RunVEIP1:
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip1.exe', work_dir, timeout)
 
     def result (self):
         r = self.r.result()
@@ -77,9 +92,9 @@ class RunVEIP1 (Run):
         FileInfo('RunVEIP1', work_dir + 'middle')
         return r
 
-class RunVEIP2 (Run):
-    def __init__(self):
-        self.r = Run('veip2.exe', work_dir, 20.0)
+class RunVEIP2:
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip2.exe', work_dir, timeout)
 
     def result (self):
         r = self.r.result()
@@ -93,9 +108,9 @@ class RunVEIP2 (Run):
         FileInfo('RunVEIP2', work_dir + 'MOMENTS')
         return r
 
-class RunVEIP3 (Run):
-    def __init__(self):
-        self.r = Run('veip3.exe', work_dir, 0.15)
+class RunVEIP3:
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip3.exe', work_dir, timeout)
 
     def result (self):
         r = self.r.result()
@@ -109,9 +124,9 @@ class RunVEIP3 (Run):
         FileInfo('RunVEIP3', work_dir + 'ab')
         return r
 
-class RunVEIP4 (Run):
-    def __init__(self):
-        self.r = Run('veip4.exe', work_dir, 0.15)
+class RunVEIP4:
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip4.exe', work_dir, timeout)
 
     def result (self):
         r = self.r.result()
@@ -133,9 +148,9 @@ class RunVEIP4 (Run):
         FileInfo('RunVEIP4', work_dir + 'putv')
         return r
 
-class RunVEIP6(Run):
-    def __init__(self):
-        self.r = Run('veip6.exe', work_dir, 0.15)
+class RunVEIP6:
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip6.exe', work_dir, timeout)
 
     def result(self):
         r = self.r.result()
@@ -156,9 +171,9 @@ class RunVEIP6(Run):
         FileInfo('RunVEIP6', work_dir + 'ab')
         return r
 
-class RunVEIP7 (Run):
-    def __init__(self):
-        self.r = Run('veip7.exe', work_dir, 0.15)
+class RunVEIP7:
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip7.exe', work_dir, timeout)
 
     def result (self):
         r = self.r.result()
@@ -171,9 +186,9 @@ class RunVEIP7 (Run):
         FileInfo('RunVEIP7', work_dir + 'middle')
         return r
 
-class RunVEIP8 (Run):
-    def __init__(self):
-        self.r = Run('veip8.exe', work_dir, 0.15)
+class RunVEIP8:
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip8.exe', work_dir, timeout)
 
     def result (self):
         r = self.r.result()
@@ -190,9 +205,9 @@ class RunVEIP8 (Run):
         FileInfo('RunVEIP8', work_dir + 'sd')
         return r
 
-class RunVEIP9 (Run):
-    def __init__(self):
-        self.r = Run('veip9.exe', work_dir, 0.15)
+class RunVEIP9:
+    def __init__(self, work_dir, timeout):
+        self.r = Run('veip9.exe', work_dir, timeout)
 
     def result (self):
         r = self.r.result()
@@ -205,4 +220,5 @@ class RunVEIP9 (Run):
         r = r and FileInfo('RunVEIP9', work_dir + 'output.st6')
         r = r and FileInfo('RunVEIP9', work_dir + 'output.st7')
         return r
+
 
