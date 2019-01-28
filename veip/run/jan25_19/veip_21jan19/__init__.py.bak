@@ -1,0 +1,53 @@
+import os, sys
+import subprocess
+
+dbg_init = True
+#dbg_init = False
+
+dbg_done = True
+#dbg_done = False
+
+dbg_body = True
+#dbg_body = False
+
+pkg = __package__
+os.chdir(os.getcwd() + '\\' + pkg)
+
+if dbg_init:
+    print('%s.init: current folder: "%s"\npython path:' % (pkg, os.getcwd()))
+    for p in sys.path: print(p)
+
+a1 = int(sys.argv[1]); a2 = int(sys.argv[2]); a3 = int(sys.argv[3]); a4 = int(sys.argv[4]); a5 = int(sys.argv[5]); a6 = int(sys.argv[6])
+a7 = float(sys.argv[7]); a8 = float(sys.argv[8]); a9 = float(sys.argv[9]); a10 = float(sys.argv[10]); a11 = float(sys.argv[11]); a12 = float(sys.argv[12])
+a13 = float(sys.argv[13]); a14 = float(sys.argv[14]); a15 = float(sys.argv[15])
+
+if dbg_init:
+    print(("%s.init: args:" + "%2d" * 6) % (pkg, a1, a2, a3, a4, a5, a6))
+    print(("%s.init: args:" + "%10.3f" * 6) % (pkg, a7, a8, a9, a10, a11, a12))
+    print(("%s.init: args:" + "%10.3f" * 3) % (pkg, a13, a14, a15))
+'''
+ 516 1 1 0 1
+     1.389   350.        0.8       0.05    556.     1900.
+     0.007     1.        0.8
+НННННН.ННННННННН.ННННННННН.ННННННННН.ННННННННН.ННННННННН.ННННН
+
+    К О М М Е Н Т А Р И И
+
+1-я строка: 1 2 3 4 5 6  FORMAT(6I2)
+
+1 - Тип подвижного состава        4 - Тип спектра вертикального
+2 - Тип верхнего строения пути    5 - Игнорируется
+3 - Тип спектра горизонтального   6 - Координаты точек экипажа 
+
+
+2-я строка: 1 2 3 4 5 6  FORMAT(6E10.3)
+3-я строка: 7 8 9        FORMAT(3E10.3)
+
+1 - Скорость движения, м/с              6 - Горизонтальная жесткость пути
+2 - Радиус кривой, м                    7 - Половина зазора в колее, м
+3 - Расстояние между кругами катания, м 8 - Коэффициент износа колес
+4 - Возвышение наружного рельса, м      9 - Соотношение крипов
+5 - Коэффициент крипа, тс/м
+
+'''
+
