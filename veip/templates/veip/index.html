@@ -8,9 +8,7 @@
     <h1>Параметры VEIP</h1>
     <form action="/veip/vivod/" method="post">
         {% csrf_token %}
-        <label>Введите скорость (м/с):</label>
-        <input type="text" name="speed"/><br/>
-        <label>Введите радиус (м):</label>
+        <input type="text" name="speed"/>
         <input type="text" name="radius"/>
         <button type="submit">GO</button>
     </form>
