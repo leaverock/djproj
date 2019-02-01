@@ -1,0 +1,20 @@
+/*-- init --*/
+@font-face {
+    font-family: FSRAILWAY_Book !important;
+    src: url(fonts/FSRAIL55.ttf);
+}
+
+div.border_thin
+{
+    /* dbg off
+   border-style: dotted;
+   border-width: 1px;  */
+}
+
+body {
+    background-color: #d9dde8;
+}
+
+div.shapka {
+
+}
