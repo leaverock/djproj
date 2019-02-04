@@ -1,6 +1,6 @@
 {% load static %}<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,17 +9,44 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/general.css' %}" rel="stylesheet">
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>  <!-- JQUERY HERE -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    {% block javascript %}
+</head>
+<body>
+<div class="container">
+    {% block content %}
     {% endblock %}
-  </body>
+</div>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog" style="max-width: 95vw; max-height: 20%">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" style="max-height: 72vh">
+                {% block modal_body %}
+                <iframe style="height: 62vh; width: 91vw;"></iframe>
+                {% endblock %}
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>  <!-- JQUERY HERE -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% block javascript %}
+{% endblock %}
+</body>
+</html>

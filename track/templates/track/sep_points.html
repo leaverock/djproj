@@ -1,27 +1,35 @@
+{% extends 'kortes/base.html' %}
+{% load static %}
+{% block content %}
 {% if stations %}
-    <p>Раздельные пункты:</p>
-    <table>
+<p>Раздельные пункты:</p>
+<table class="table table-striped table-hover">
     <tr>
         <th>Наименование станции</th>
-        <th>Kod</th>
+        <th>Наличие путевого развития</th>
+        <!--th>Kod</th>
         <th>Obg</th>
         <th>MputPrg</th>
-        <th>RsrvS1</th>
+        <th>RsrvS1</th-->
         <th>Координата на плане (по путям), км</th>
         <th>Фактическая коорд./Длина след. перегона (по путям)</th>
     </tr>
     {% for x in stations %}
     <tr>
         <td>{{ x.Nam }}</td>
-        <td>{{ x.Kod }}</td>
+        <td onclick="let inp=$('#checkBox{{ forloop.counter }}')[0];inp.checked=!inp.checked">
+            <input type="checkbox" id="checkBox{{ forloop.counter }}"/>
+        </td>
+        <!--td>{{ x.Kod }}</td>
         <td>{{ x.Obg }}</td>
         <td>{{ x.MputPrg }}</td>
-        <td>{{ x.RsrvS1 }}</td>
-        <td>{{ x.Kml.0 }}</td>
-        <td>{{ x.Kml.1 }}</td>
+        <td>{{ x.RsrvS1 }}</td-->
+        <td>{{ x.Kml.0.0 }}</td>
+        <td>{{ x.Kml.1.0 }}</td>
     </tr>
     {% endfor %}
 </table>
 {% else %}
-    <p>Не найдено раздельных пунктов</p>
+<p>Не найдено раздельных пунктов</p>
 {% endif %}
+{% endblock %}

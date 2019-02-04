@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^track/', include('track.urls')),
     url(r'^engine/', include('engine.urls')),
     url(r'^veip/', include('veip.urls')),
+    url(r'^kortes/', include('kortes.urls')),
     url(r'^admin/', admin.site.urls),
 ]

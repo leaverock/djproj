@@ -5,7 +5,7 @@ from .models import LocomSTRUCT, XapSTRUCT_TGxp, XapSTRUCT_RCxp
 
 def report(request):
     latest_question_list = LocomSTRUCT.objects.order_by('LocmTyp')[:5]
-    template = loader.get_template('engine\\report.html')
+    template = loader.get_template('engine\\list.html')
     context = {
         'latest_question_list': latest_question_list,
     }

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'train',
     'vars_results',
     'veip',
+    'kortes',
 ]
 
 MIDDLEWARE = [
@@ -84,14 +85,14 @@ WSGI_APPLICATION = 'djproj.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASESa = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'vas30nov17',                               # Or path to database file if using sqlite3.
+        'NAME': 'djproj04-02-19',                           # Or path to database file if using sqlite3.
         'USER': 'postgres',                                 # Not used with sqlite3.
-        'PASSWORD': '1234',                                 # Not used with sqlite3.
+        'PASSWORD': '123456Qw',                                 # Not used with sqlite3.
         'HOST': 'localhost',                                # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '8080',                                     # Set to empty string for default. Not used with sqlite3.
+        'PORT': '5432',                                     # Set to empty string for default. Not used with sqlite3.
         }
     }
 

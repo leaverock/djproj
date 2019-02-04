@@ -1,21 +1,31 @@
+{% extends 'kortes/base.html' %}
+{% load static %}
+{% block content %}
 {% if categs %}
-    <p>Категории и типы поездов:</p>
-    <table>
-    <tr>
-        <th>Категории</th>
-        <th>PutSpec</th>
-        <th>RsrvC1</th>
-        <th>Массы составов (т) по направлениям</th>
-    </tr>
-    {% for x in categs %}
-    <tr>
-        <td>{{ x.CatgNam }}</td>
-        <td>{{ x.PutSpec }}</td>
-        <td>{{ x.RsrvC1 }}</td>
-        <td>{{ x.TrTYP }}</td>
-    </tr>
-    {% endfor %}
-    </table>
+<p>Категории и типы поездов:</p>
+<div class="row">
+    <div class="col-7">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>Категории</th>
+                <th>PutSpec</th>
+                <th>RsrvC1</th>
+                <th>Массы составов (т) по направлениям</th>
+            </tr>
+            {% for x in categs %}
+            <tr>
+                <td>{{ x.CatgNam }}</td>
+                <td>{{ x.PutSpec }}</td>
+                <td>{{ x.RsrvC1 }}</td>
+                <td>{{ x.TrTYP }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-5">
+
+    </div>
+</div>
 <!--
     {% for x in categs %}
         <p>Массы составов (т) по направлениям для {{x.CatgNam}}</p>
@@ -23,5 +33,6 @@
     {% endfor %}
 -->
 {% else %}
-    <p>Не найдено категорий и типов поездов</p>
+<p>Не найдено категорий и типов поездов</p>
 {% endif %}
+{% endblock %}
