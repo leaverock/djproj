@@ -9,18 +9,137 @@ VEIP
     <table class="">
         <tr>
             <td>
-                <label for="speed">Введите скорость (м/с):</label>
+                <label for="train_type">Тип подвижного состава:</label>
             </td>
             <td>
-                <input id="speed" type="number" name="speed" required value="12"/>
+                <input id="train_type" type="number" name="train_type" required value="9"
+                {% if not p0 %} disabled {% endif %}/>
             </td>
         </tr>
         <tr>
             <td>
-                <label for="radius">Введите радиус (м):</label>
+                <label for="track_structure">Тип верхнего строения пути:</label>
             </td>
             <td>
-                <input id="radius" type="number" name="radius" required value="350"/>
+                <input id="track_structure" type="number" name="track_structure" required value="16"
+                {% if not p1 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="horizontal_spectrum">Тип спектра горизонтального:</label>
+            </td>
+            <td>
+                <input id="horizontal_spectrum" type="number" name="horizontal_spectrum" required value="1"
+                {% if not p2 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="vertical_spectrum">Тип спектра вертикального:</label>
+            </td>
+            <td>
+                <input id="vertical_spectrum" type="number" name="vertical_spectrum" required value="1"
+                {% if not p3 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="ignored">Игнорируется</label>
+            </td>
+            <td>
+                <input id="ignored" type="number" name="ignored" required value="0"
+                {% if not p4 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="vehicle_coordinates">Координаты точек экипажей:</label>
+            </td>
+            <td>
+                <input id="vehicle_coordinates" type="number" name="vehicle_coordinates" required value="1"
+                {% if not p5 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="speed">Скорость движения (м/с):</label>
+            </td>
+            <td>
+                <input id="speed" type="number" name="speed" required value="12"
+                {% if not p6 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="radius">Радиус кривой (м):</label>
+            </td>
+            <td>
+                <input id="radius" type="number" name="radius" required value="350"
+                {% if not p7 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="tapes_distance">Расстояние между кругами катания (м):</label>
+            </td>
+            <td>
+                <input id="tapes_distance" type="number" name="tapes_distance" required value="0.8"
+                {% if not p8 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="superelevation">Возвышение наружного рельса (м):</label>
+            </td>
+            <td>
+                <input id="superelevation" type="number" name="superelevation" required value="0.05"
+                {% if not p9 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="creep_coefficient">Коэффициент крипа (тс/м):</label>
+            </td>
+            <td>
+                <input id="creep_coefficient" type="number" name="creep_coefficient" required value="556"
+                {% if not p10 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="horizontal_stiffness">Горизонтальная жесткость пути:</label>
+            </td>
+            <td>
+                <input id="horizontal_stiffness" type="number" name="horizontal_stiffness" required value="1900.0"
+                {% if not p11 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="halved_gap">Половина зазора в колее (м):</label>
+            </td>
+            <td>
+                <input id="halved_gap" type="number" name="halved_gap" required value="0.007"
+                {% if not p12 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="wheel_wear">Коэффициент износа колес:</label>
+            </td>
+            <td>
+                <input id="wheel_wear" type="number" name="wheel_wear" required value="1.0"
+                {% if not p13 %} disabled {% endif %}/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="creeps_ratio">Соотношения крипов:</label>
+            </td>
+            <td>
+                <input id="creeps_ratio" type="number" name="creeps_ratio" required value="0.8"
+                {% if not p14 %} disabled {% endif %}/>
             </td>
         </tr>
     </table>

@@ -1,6 +1,3 @@
-{% extends 'kortes/base.html' %}
-{% load static %}
-{% block content %}
 {% if stations %}
 <p>Раздельные пункты:</p>
 <table class="table table-striped table-hover">
@@ -17,8 +14,10 @@
     {% for x in stations %}
     <tr>
         <td>{{ x.Nam }}</td>
-        <td onclick="let inp=$('#checkBox{{ forloop.counter }}')[0];inp.checked=!inp.checked">
-            <input type="checkbox" id="checkBox{{ forloop.counter }}"/>
+        <td onclick="if((event.toElement ? event.toElement : event.target).nodeName=='INPUT')return;
+        let inp=$('#checkBox{{ forloop.counter }}')[0];inp.checked=!inp.checked">
+            <input type="checkbox" id="checkBox{{ forloop.counter }}"
+                    name="checkBox{{ forloop.counter }}" {% if x.Obg != 0 %}checked{% endif %}/>
         </td>
         <!--td>{{ x.Kod }}</td>
         <td>{{ x.Obg }}</td>
@@ -32,4 +31,3 @@
 {% else %}
 <p>Не найдено раздельных пунктов</p>
 {% endif %}
-{% endblock %}

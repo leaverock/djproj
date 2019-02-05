@@ -1,0 +1,40 @@
+body {
+    background-color: #eff0f3;
+}
+
+div.shapka {
+    background-color: #005f8d;
+    color: #ffffff;
+    height: 27px;
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 0.25rem 0.25rem 0px 0px;
+}
+
+.row {
+    background-color: #ffffff;
+    margin: 0;
+}
+
+.col-8 {
+    background-color: #ffffff;
+}
+
+.tables-button{
+    background-color: #dbe0ea;
+    margin: 2px 0px 2px 0px;
+}
+.tables-button:hover{
+	background-color: #e6eaf1;
+}
+.row.inps input,
+.row.inps select{
+    width: 100%;
+}
+.row.inps select{
+    padding-bottom: 4px;
+}
+.round-bottom{
+    border-radius: 0 0 0.25rem 0.25rem;
+}
