@@ -7,24 +7,24 @@ from . import dbg_track
 class UchSTRUCT(models.Model):
     KodDor = models.IntegerField(default=0)
     KodUch = models.IntegerField(default=0)
-    DorNam = models.CharField(max_length=50, default='')
-    UchNam = models.CharField(max_length=50, default='')
-    Comment = models.CharField(max_length=50, default='')
-    RsrvU1 = models.CharField(max_length=50, default='')
+    DorNam = models.CharField(max_length=50, default='')  # название дороги
+    UchNam = models.CharField(max_length=50, default='')  # название участка
+    Comment = models.CharField(max_length=50, default='')  # примечание
+    RsrvU1 = models.CharField(max_length=50, default='')  # видимо, зарезервированное поле
     VersFile = models.IntegerField(default=0)
     VersProg = models.FloatField(default=0.0)
-    mGput = models.IntegerField(default=0)
-    Difl = models.BooleanField(default=False)
-    RsrvU2 = models.FloatField(default=0.0)
-    mStan = models.IntegerField(default=0)
+    mGput = models.IntegerField(default=0)  # число главных путей минус 1
+    Difl = models.BooleanField(default=False)  # различие профилей и длин перегонов путей
+    RsrvU2 = models.FloatField(default=0.0)  # видимо, зарезервированное поле
+    mStan = models.IntegerField(default=0)  # количество станций ?
     # Stans()  As StansSTRUCT
-    NechSt = models.IntegerField(default=0)
-    mCtg = models.IntegerField(default=0)
+    NechSt = models.IntegerField(default=0)  # считать последнюю станцию в списке началом пути (нечетный путь)
+    mCtg = models.IntegerField(default=0)  # количество категорий и типов поездов минус 1. не использую
     # CATEGS() As CategSTRUCT
-    mVorp = models.IntegerField(default=0)
-    VorpMx = models.IntegerField(default=0)
+    mVorp = models.IntegerField(default=0)  # количество ограничений скоростей минус 3
+    VorpMx = models.IntegerField(default=0)  # самое большое ограничение скорости
     Vorp = ArrayField(ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0)))))
-    mPrf = models.IntegerField(default=0)
+    mPrf = models.IntegerField(default=0)  # количество Prof минус 2
     Prof = ArrayField(ArrayField(ArrayField(models.FloatField(default=0.0))))
 
     def __str__(self):
@@ -144,11 +144,10 @@ class StansSTRUCT(models.Model):
 
     def __str__(self):
         s = str.format(
-            "StansSTRUCT: self.id: %d, Nam: '%s', Kod: %d, Obg: %d\n" % (self.id, self.Nam, self.Kod, self.Obg))
-        s = s + str.format("MputPrg: %d, RsrvS1: %d\n" % (self.MputPrg, self.RsrvS1))
+            "id:%d;Nam:%s;Kod:%d;Obg:%d;" % (self.id, self.Nam, self.Kod, self.Obg))
+        s = s + str.format("MputPrg:%d;RsrvS1:%d;Kml:" % (self.MputPrg, self.RsrvS1))
         for i in range(len(self.Kml)):
-            for j in range(len(self.Kml[i])):
-                s = s + str.format("Kml[%d,%d]: %f\n" % (i, j, self.Kml[i][j]))
+            s = s + str.format(";[%d]:%f" % (i, self.Kml[i][0]))
         return s
 
     @classmethod
