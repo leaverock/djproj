@@ -1,3 +1,6 @@
+/*
+***************************************************WINDOWS
+*/
 body {
     background-color: #eff0f3;
 }
@@ -13,14 +16,8 @@ div.shapka {
 }
 
 .row {
-    background-color: #ffffff;
     margin: 0;
 }
-
-.col-8 {
-    background-color: #ffffff;
-}
-
 .tables-button{
     background-color: #dbe0ea;
     margin: 2px 0px 2px 0px;
@@ -37,4 +34,11 @@ div.shapka {
 }
 .round-bottom{
     border-radius: 0 0 0.25rem 0.25rem;
+}
+.bodydiv{
+    background-color: white;
+    min-height: 500px;
+}
+.inpSelect{
+    height: 29px
 }

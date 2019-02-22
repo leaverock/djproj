@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Отраслевой САПР Demo</title>
+    
+	<!-- MATERIAL DESIGN-->
+	<!-- https://material.io/-->
+	<!-- Style CORE-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="local/css/material-components-web.min.css" />
+	<!-- Style CUSTOM-->
+	<link rel="stylesheet" href="local/css/index2.css">
+	
+	<!-- Scripts CORE-->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+	<!-- Scripts CUSTOM-->
+	<script src="local/js/index2.js"></script>
+	
+	
+	
+</head>
+<body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" class="mdc-typography">
+	<header class="mdc-toolbar mdc-toolbar--fixed ">
+		<div class="mdc-toolbar__row">
+			<section class="mdc-toolbar__section">
+				<span class="mdc-toolbar__title">- Заголовок ОКНА -</span>
+			</section>
+			<section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+				<a href="#" class="material-icons mdc-toolbar__menu-icon">menu</a>
+					<span class="mdc-toolbar__title">Отраслевой САПР</span>
+			</section>
+			<section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+					<span class="mdc-toolbar__title">ВОЙТИ</span>
+			</section>
+			<section class="mdc-toolbar__section mdc-toolbar__section--align-end mdc-toolbar__section--shrink-to-fit">
+				<a class="material-icons search align-icons" aria-label="Search" alt="Search">search</a>
+			</section>
+			<a href="#" class="mdc-toolbar__icon">
+				<svg></svg>
+			</a>
+		</div>
+	</header>
+	<div style="margin-top: 30px">
+	<main class="mdc-toolbar-fixed-adjust">
+		<!--параграф-->
+		<p class="demo-paragraph" id="calc_result">
+			- РАССЧЕТ ЗНАЧЕНИЙ -
+		</p>
+
+		<!--поле ввода теста-->
+		<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+			<input class="mdc-text-field__input" type="text" id="input1">
+				<label for="input1" class="mdc-floating-label">Введите значение А</label>
+			<div class="mdc-line-ripple"></div>
+		</div>
+
+		<!--поле ввода теста-->
+		<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+			<input class="mdc-text-field__input" type="text" id="input2">
+				<label for="input2" class="mdc-floating-label">Введите значение Б</label>
+			<div class="mdc-line-ripple"></div>
+		</div>
+
+		<!--кнопка-->
+		<button class="mdc-button" onclick="myFunction()">
+			СУММА А и Б
+		</button>
+
+		<!--текст-->
+		<div id="calc_results">- РЕЗУЛЬТАТЫ -</div>
+
+	</main></div>
+
+	<script>
+		window.mdc.autoInit();
+		/*var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
+		toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');*/
+
+
+		// Instantiation
+		//const topAppBarElement = document.querySelector('.mdc-top-app-bar');
+		//const topAppBar = new MDCTopAppBar(topAppBarElement);
+
+		function myFunction() {
+			/*alert( 'Привет всем присутствующим!' );*/
+			ea = document.getElementById("input1").value
+			eb = document.getElementById("input2").value
+			elementa = parseInt(ea);
+			elementb = parseInt(eb);
+			elementresult = elementa + elementb;
+			newtext = elementresult.toString();
+			document.getElementById("calc_results").textContent=newtext;
+		}
+	</script>	
+</body>
+</html>

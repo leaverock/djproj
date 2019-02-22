@@ -1,32 +1,34 @@
 ﻿{% extends 'kortes/base.html' %}
 {% load static %}
-
+{% block shapka %}
+Редактор участков
+{% endblock %}
 {% block content %}
-<link href="{% static 'kortes/uchastk/k2css.css' %}" target="head" rel="stylesheet">
 {% if uch %}
-<div class="shapka">Редактор участков</div>
-<form method="post">
-    {%csrf_token%}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Файл
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <button class="dropdown-item">Создать</button>
-                        <button class="dropdown-item" >Открыть</button>
-                        <button class="dropdown-item" >Преобразовать из...</button>
-                        <div class="dropdown-divider"></div>
-                        <button class="dropdown-item" type="submit" formaction="{% url 'save_uch' uch.id %}">Сохранить</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<form method="post" xmlns="http://www.w3.org/1999/html">
+  {% csrf_token %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" onclick="location.href='/track/'">Назад</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+             data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Файл
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'new_uch' %}" role="button">Создать</a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" type="submit" formaction="{% url 'save_uch' uch.id %}">Сохранить</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="bodydiv p-2">
     <!--div class="row">
         <div class="col-12 text-center">
             <div class="btn-group">
@@ -38,82 +40,83 @@
         </div>
     </div-->
     <div class="row inps">
-        <div class="col-12 text-center text-primary">
-            {{ uch.UchNam }}
-        </div>
+      <div class="col-12 text-center text-primary">
+        {{ uch.UchNam }}
+      </div>
     </div>
     <div class="row inps">
-        <div class="col-12 text-center">
-            {{ prot }}
-        </div>
+      <div class="col-12 text-center">
+        {{ prot }}
+      </div>
     </div>
     <div class="row inps">
-        <label class="col-3 text-left px-3" for="road-input">Дорога</label>
-        <div class="col-9">
-            <input id="road-input" name="road-input" type="text" value="{{ uch.DorNam }}"/>
-        </div>
+      <label class="col-3 text-left px-3" for="road-input">Дорога</label>
+      <div class="col-9">
+        <input id="road-input" name="road-input" type="text" value="{{ uch.DorNam }}"/>
+      </div>
     </div>
     <div class="row inps">
-        <label class="col-3 text-left px-3" for="comment-input">Примечание</label>
-        <div class="col-9">
-            <input id="comment-input" name="comment-input" type="text" value="{{ uch.Comment }}"/>
-        </div>
+      <label class="col-3 text-left px-3" for="comment-input">Примечание</label>
+      <div class="col-9">
+        <input id="comment-input" name="comment-input" type="text" value="{{ uch.Comment }}"/>
+      </div>
     </div>
     <div class="row inps">
-        <label class="col-3 text-left px-3" for="odd-way-select">Нечетное направление от ст.</label>
-        <div class="col-9">
-            <select id="odd-way-select" name="odd-way-select">
-                <option value="0">{{ odd_way_0 }}</option>
-                <option value="1">{{ odd_way_1 }}</option>
-            </select>
-        </div>
+      <label class="col-3 text-left px-3" for="odd-way-select">Нечетное направление от ст.</label>
+      <div class="col-9">
+        <select id="odd-way-select" name="odd-way-select">
+          <option value="0">{{ odd_way_0 }}</option>
+          <option value="1" {% if odd_way_selected_is_last %}selected{% endif %}>{{ odd_way_1 }}</option>
+        </select>
+      </div>
     </div>
 
     <div class="row inps">
-        <label class="col-3 text-left px-3" for="put-count-select">Число главных путей</label>
-        <div class="col-9">
-            <select id="put-count-select" name="put-count-select">
-                <option value="0" {% if uch.mGput == 0 %}selected{% endif %}>1</option>
-                <option value="1" {% if uch.mGput == 1 %}selected{% endif %}>2</option>
-                <option value="2" {% if uch.mGput == 2 %}selected{% endif %}>3</option>
-                <option value="3" {% if uch.mGput == 3 %}selected{% endif %}>4</option>
-            </select>
-        </div>
+      <label class="col-3 text-left px-3" for="put-count-select">Число главных путей</label>
+      <div class="col-9">
+        <select id="put-count-select" name="put-count-select">
+          <option value="0" {% if uch.mGput == 0 %}selected{% endif %}>1</option>
+          <option value="1" {% if uch.mGput == 1 %}selected{% endif %}>2</option>
+          <option value="2" {% if uch.mGput == 2 %}selected{% endif %}>3</option>
+          <option value="3" {% if uch.mGput == 3 %}selected{% endif %}>4</option>
+        </select>
+      </div>
     </div>
     <div class="row">
-        <label class="col-6 text-right" for="difference_peregon">
-            Учитывать различие профилей и длин перегонов путей
-        </label>
-        <div class="col-6">
-            <input type="checkbox" name="difference_peregon" id="difference_peregon"
-                   {% if uch.Difl %}checked="checked" {% endif %}/>
-        </div>
+      <label class="col-6 text-right" for="difference_peregon">
+        Учитывать различие профилей и длин перегонов путей
+      </label>
+      <div class="col-6">
+        <input type="checkbox" name="difference_peregon" id="difference_peregon"
+               {% if uch.Difl %}checked="checked" {% endif %}/>
+      </div>
     </div>
     <div class="row pl-3 pb-3 round-bottom">
-        <fieldset class="col-8 btn-group-vertical">
-            <legend><strong>Таблицы</strong></legend>
-            <button class="tables-button btn" type="button"
-                    onclick="$('div#modal-content').load('/track/report/sep_points/{{ uch.id }}/')"
-                    data-toggle="modal" data-target="#myModal">Раздельные пункты
-            </button>
-            <button class="tables-button btn" type="button" onclick="">Продольный профиль</button>
-            <button class="tables-button btn" type="button"
-                    onclick="$('div#modal-content').load('/track/report/ctgs_types_train/{{ uch.id }}/')"
-                    data-toggle="modal" data-target="#myModal">Категории и типы поездов
-            </button>
-            <button class="tables-button btn" type="button" onclick="">Ограничения скорости</button>
-        </fieldset>
-        <div class="col-4 m-auto text-center">
-            <img src="{% static 'kortes/uchastk/prosmotr.png' %}"/>
-        </div>
+      <fieldset class="col-8 btn-group-vertical">
+        <legend><strong>Таблицы</strong></legend>
+        <button class="tables-button btn" type="button"
+                onclick="$('div#modal-content').load('/track/report/sep_points/{{ uch.id }}/')"
+                data-toggle="modal" data-target="#myModal">Раздельные пункты
+        </button>
+        <button class="tables-button btn" type="button" onclick="">Продольный профиль</button>
+        <button class="tables-button btn" type="button"
+                onclick="$('div#modal-content').load('/track/report/ctgs_types_train/{{ uch.id }}/')"
+                data-toggle="modal" data-target="#myModal">Категории и типы поездов
+        </button>
+        <button class="tables-button btn" type="button" onclick="">Ограничения скорости</button>
+      </fieldset>
+      <div class="col-4 m-auto text-center">
+        <img src="{% static 'kortes/uchastk/prosmotr.png' %}"/>
+      </div>
     </div>
+  </div>
 </form>
 {% else %}
 <p>Не найдено участка</p>
 {% endif %}
 {% endblock %}
 {% block javascript %}
-<script src="{% static 'kortes/uchastk/uchastk.js' %}"></script>
+<script src="{% static 'kortes/uchastk/uchastk.js' %}{{cache_key}}"></script>
 {% if just_saved %}
 <script>
     $(alert("Данные были успешно сохранены."))

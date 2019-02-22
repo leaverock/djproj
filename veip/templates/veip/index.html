@@ -1,148 +1,89 @@
 {% extends 'veip/base.html' %}
+{% load static %}
 {% block title %}
 VEIP
 {% endblock %}
 {% block content %}
-<h1>Параметры VEIP</h1>
-<form action="/veip/vivod/" method="post" onsubmit="">
+<div class="tab">
+  <button class="tablinks" onclick="tabClick(event, 'tab0')">Параметры VEIP</button>
+  <button class="tablinks" onclick="tabClick(event, 'tab1')">Многовариантные расчеты</button>
+  <!--button class="tablinks" onclick="tabClick(event, 'tab2')">Вкладка 2</button-->
+  <button class="tablinks float-right" onclick="tabClick(event, 'tab3')">Помощь</button>
+</div>
+
+<div id="tab0" class="tabcontent">
+  <h1>Параметры VEIP</h1>
+  <form action="/veip/vivod/" method="post" onsubmit="">
     {% csrf_token %}
-    <table class="">
-        <tr>
-            <td>
-                <label for="train_type">Тип подвижного состава:</label>
-            </td>
-            <td>
-                <input id="train_type" type="number" name="train_type" required value="9"
-                {% if not p0 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="track_structure">Тип верхнего строения пути:</label>
-            </td>
-            <td>
-                <input id="track_structure" type="number" name="track_structure" required value="16"
-                {% if not p1 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="horizontal_spectrum">Тип спектра горизонтального:</label>
-            </td>
-            <td>
-                <input id="horizontal_spectrum" type="number" name="horizontal_spectrum" required value="1"
-                {% if not p2 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="vertical_spectrum">Тип спектра вертикального:</label>
-            </td>
-            <td>
-                <input id="vertical_spectrum" type="number" name="vertical_spectrum" required value="1"
-                {% if not p3 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="ignored">Игнорируется</label>
-            </td>
-            <td>
-                <input id="ignored" type="number" name="ignored" required value="0"
-                {% if not p4 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="vehicle_coordinates">Координаты точек экипажей:</label>
-            </td>
-            <td>
-                <input id="vehicle_coordinates" type="number" name="vehicle_coordinates" required value="1"
-                {% if not p5 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="speed">Скорость движения (м/с):</label>
-            </td>
-            <td>
-                <input id="speed" type="number" name="speed" required value="12"
-                {% if not p6 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="radius">Радиус кривой (м):</label>
-            </td>
-            <td>
-                <input id="radius" type="number" name="radius" required value="350"
-                {% if not p7 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="tapes_distance">Расстояние между кругами катания (м):</label>
-            </td>
-            <td>
-                <input id="tapes_distance" type="number" name="tapes_distance" required value="0.8"
-                {% if not p8 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="superelevation">Возвышение наружного рельса (м):</label>
-            </td>
-            <td>
-                <input id="superelevation" type="number" name="superelevation" required value="0.05"
-                {% if not p9 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="creep_coefficient">Коэффициент крипа (тс/м):</label>
-            </td>
-            <td>
-                <input id="creep_coefficient" type="number" name="creep_coefficient" required value="556"
-                {% if not p10 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="horizontal_stiffness">Горизонтальная жесткость пути:</label>
-            </td>
-            <td>
-                <input id="horizontal_stiffness" type="number" name="horizontal_stiffness" required value="1900.0"
-                {% if not p11 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="halved_gap">Половина зазора в колее (м):</label>
-            </td>
-            <td>
-                <input id="halved_gap" type="number" name="halved_gap" required value="0.007"
-                {% if not p12 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="wheel_wear">Коэффициент износа колес:</label>
-            </td>
-            <td>
-                <input id="wheel_wear" type="number" name="wheel_wear" required value="1.0"
-                {% if not p13 %} disabled {% endif %}/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="creeps_ratio">Соотношения крипов:</label>
-            </td>
-            <td>
-                <input id="creeps_ratio" type="number" name="creeps_ratio" required value="0.8"
-                {% if not p14 %} disabled {% endif %}/>
-            </td>
-        </tr>
+    <table>
+      {{ form.as_table }}
     </table>
-    <button type="submit">GO</button>
-</form>
+    <button type="submit">Расчет</button>
+  </form>
+</div>
+
+<div id="tab1" class="tabcontent">
+  <h3>Многовариантные расчеты</h3>
+
+  <button onclick="addGroupOfParams(this,'Группа параметров ');">
+    <i class="fa fa-plus"></i>
+  </button>
+  <button onclick="deleteGroupOfParams();">
+    <i class="fa fa-trash"></i>
+  </button>
+  <div class="row">
+    <div id="multiVarComp" class="col-8">
+      <form action="/veip/multiVar/" method="post">
+        <ul id="groupsList">
+
+        </ul>
+      <button type="button">Расчет</button>
+      </form>
+    </div>
+
+
+    <div class="col-4">
+      <table class="table table-sm border">
+        {% for field in form %}
+        <tr>
+          <td id="{{ field.name }}" class="param-list"
+              onclick="addParamToGroup(this, '{{ field.value }}')">
+            {{ field.label }}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+  <!--form>
+  {% for param_field in multiForm.get_param_fields %}
+  {{ param_field }}
+  {% endfor %}
+  </form-->
+</div>
+
+<div id="tab2" class="tabcontent">
+  <h3>Многовариантные расчеты</h3>
+  <table>
+    {{ multiVarForm.as_table }}
+  </table>
+  <button type="submit" disabled>Расчет</button>
+</div>
+
+<div id="tab3" class="tabcontent">
+  <h3>Помощь</h3>
+  <div id="helpTab">
+    Текст вкладки помощь
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{% static 'veip/veip.js' %}{{cache_key}}"></script>
+<script>
+  //https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-by-hitting-enter
+  $(document).on("keypress", ":input:not(textarea)", function(event) {
+    return event.keyCode != 13;
+  });
+  $('.tablinks')[1].click()
+</script>
 {% endblock %}

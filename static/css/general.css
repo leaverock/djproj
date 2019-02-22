@@ -12,33 +12,59 @@ div.border_thin
 }
 
 body {
-    background-color: #d9dde8;
+    /*background-color: #d9dde8;*/
 }
 
 div.shapka {
 
 }
 
-    fieldset
-	{
-		border: 1px solid #ddd !important;
-		margin: 0;
-		xmin-width: 0;
-		padding: 10px;
-		position: relative;
-		border-radius:4px;
-		background-color:#f5f5f5;
-		padding-left:10px!important;
-	}
+fieldset
+{
+	border: 1px solid #ddd !important;
+	margin: 0;
+	xmin-width: 0;
+	padding: 10px;
+	position: relative;
+	border-radius:4px;
+	background-color:#f5f5f5;
+	padding-left:10px!important;
+}
 
-		legend
-		{
-			font-size:14px;
-			font-weight:bold;
-			margin-bottom: 0px;
-			width: 35%;
-			border: 1px solid #ddd;
-			border-radius: 4px;
-			padding: 5px 5px 5px 10px;
-			background-color: #ffffff;
-		}
+legend
+{
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 0px;
+	width: 35%;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 5px 5px 5px 10px;
+	background-color: #ffffff;
+}
+/*
+***************************************************MULTIVAR
+*/
+.selected {
+  background-color: gray;
+  color: white;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ccc;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #ccc;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #ccc;
+}
+.group-of-params div{
+  border: dashed 1px black;
+}
+label{
+  margin-top: 3px;
+  margin-bottom: 3px;
+}

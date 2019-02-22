@@ -1,10 +1,82 @@
-﻿{% if uch %}
-    <p>Участки:</p>
-    <ul>
-    {% for u in uch %}
-        <li>Имя участка: <a href="/track/report/{{ u.id }}/">{{ u.UchNam }}</a></li>
-    {% endfor %}
+﻿{% extends 'kortes/base.html' %}
+{% load static %}
+{% block shapka %}
+Участки
+{% endblock %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" role="button" onclick="location.href='/track/'">Назад</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Файл
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'new_uch' %}" role="button">Создать</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item">Открыть</button>
+          <button class="dropdown-item" type="button">
+            Преобразовать из...
+          </button>
+        </div>
+      </li>
     </ul>
-{% else %}
-    <p>Не найдено участков</p>
-{% endif %}
+  </div>
+</nav>
+<div class="bodydiv p-2">
+  {% if uch %}
+  <select id="uchSelect" class="inpSelect">
+    {% for u in uch %}
+    <option value="{{ u.id }}">{{ u.UchNam }}</option>
+    {% endfor %}
+  </select>
+  <p class="py-2">
+    <button type=button class="tables-button btn inpSelect pt-0 pb-1"
+      onclick="location.href='/track/report/'+$('#uchSelect').val()">Перейти к выбранному участку</button>
+  </p>
+  {% else %}
+  <p>Не найдено участков</p>
+  {% endif %}
+</div>
+{% endblock %}
+{% block modal_body%}
+<div id="modal-content">
+  <form method="post" id="convertForm">
+    <div class="row">
+      <div class="col-6">
+        <p>
+          <input type=file name='file' id='inputFile' />
+        </p>
+        <p>
+          <select>
+            <option>
+              КОРТЭС (.pfk)
+            </option>
+          </select>
+        </p>
+
+      </div>
+      <div class="col-6">
+        <p>
+          <button type=button onsubmit="//$('form#convertForm')[0].action = $('select#actionSelect')[0].value">
+            Открыть
+          </button>
+        </p>
+        <p>
+          <select id='actionSelect'>
+            <option value="">
+              Загрузить в базу данных
+            </option>
+          </select>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

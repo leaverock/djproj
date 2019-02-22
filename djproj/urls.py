@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from . import views
+from django.views.generic import RedirectView
+
 
 urlpatterns = [
     url(r'^', include('veip.urls')),
@@ -23,5 +25,6 @@ urlpatterns = [
     url(r'^engine/', include('engine.urls')),
     url(r'^veip/', include('veip.urls')),
     url(r'^kortes/', include('kortes.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^auth/', admin.site.urls),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico'), name='favicon'),
 ]

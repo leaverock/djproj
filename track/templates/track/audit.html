@@ -1,0 +1,18 @@
+{% extends 'kortes/base.html' %}
+{% load static %}
+{% block shapka %}
+АУДИТ
+{% endblock %}
+{% block content %}
+<table class='table'>
+{% for line in au %}
+    <tr>
+    {% for param in line.get_fields %}
+        <td>
+            {{param}}
+        </td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
