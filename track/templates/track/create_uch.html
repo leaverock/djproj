@@ -33,8 +33,9 @@
     <div class="row inps">
       <div class="col-12 text-center text-primary">
         <label id="uchNameLabel">
-            {{ uch.UchNam }}
+          {{ uch.UchNam }}
         </label>
+        <input id="uchName-input" name="uchName-input" type="hidden"/>
       </div>
     </div>
     <div class="row inps">
@@ -69,6 +70,6 @@
   $(document).on("keypress", ":input:not(textarea)", function (event) {
     return event.keyCode != 13;
   });
-  $('#addGroupOfParamsButton').click();
+  $('#addGroupOfParamsButton').click().click();
 </script>
 {% endblock %}

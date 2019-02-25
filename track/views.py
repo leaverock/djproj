@@ -147,25 +147,54 @@ def auditPage(request):
 
 def new_uch_click(request):
     u = UchSTRUCT(
-        UchNam="0км - 0км"
+        UchNam=""
     )
     context = {
         'uch': u,
-        'prot': "0км",
+        # 'prot': "0км",
         'odd_way_0': "",
         'odd_way_1': "",
     }
     return render(request, 'track/create_uch.html', context)
 
+
 def create_uch(request):
     if request.method == "POST":
+        stansNames = request.POST.getlist('stansName[]')
         u = UchSTRUCT(
             DorNam=request.POST['road-input'],
+            UchNam=request.POST['uchName-input'],
             Comment=request.POST['comment-input'],
+            mStan=len(stansNames)-1,
+            Vorp=[[[[0]]]],
+            Prof=[[[0]]],
+            mGput=1,
         )
-        print(request.POST.getlist('koordFact[]'))
+        u.save()
+        u.KodUch = u.id  # пока что
+        putRazvs = request.POST.getlist('putRazv[]')
+        koordPlans = request.POST.getlist('koordPlan[]')
+        koordFact = request.POST.getlist('koordFact[]')
+        for i in range(len(stansNames)):
+            stans = StansSTRUCT(
+                Nam=stansNames[i],
+                Kod=0,
+                Obg=1,
+                MputPrg=0,
+                RsrvS1=0,
+                Kml=[[koordPlans[i], 0, 0, 0], [koordFact[i], 0, 0, 0]],
+                uch=u
+            )
+            stans.save()
+        x = np.array(u.stansstruct_set.all())
+        prot = f'km {x[0].Kml[0][0]} - {x[-1].Kml[0][0]} (протяженность {round(abs(x[-1].Kml[0][0] - x[0].Kml[0][0]), 3)})'
         context = {
             'uch': u,
+            'just_saved': True,
+            'prot': prot,
+            'odd_way_0': x[0].Nam,
+            'odd_way_1': x[u.mStan].Nam,
+            'odd_way_selected_is_last': bool(u.NechSt)
         }
         return render(request, 'track/detail.html', context)
     return HttpResponse("А ты чего хотел?")

@@ -67,23 +67,24 @@ function addGroupOfParams(elem) {
   let koordPlanDiv = $('<div/>', params).appendTo(rowDiv);//координата на плане
   let koordFactDiv = $('<div/>', params).appendTo(rowDiv);//фактическая координата
   //наименование станции
-  $('<input/>', {
+$('<input/>', {
     name: 'stansName[]',
-    class: 'w-100',
-    onblur: function () {
-      try {
-        let label = $('#uchNameLabel');
-        let uchastki = document.getElementsByName('stansName[]');
-        label.empty();
-        label.append(uchastki[0].value + ' - ' + uchastki[uchastki.length - 1].value);
-      }
-      catch{
-
-      }
+    class: 'w-100'
+  }).on('blur', function () {
+    try {
+      let label = $('#uchNameLabel');
+      let uchastki = document.getElementsByName('stansName[]');
+      label.empty();
+      label.append(uchastki[0].value + ' - ' + uchastki[uchastki.length - 1].value);
+      label.parent().find('input').val(label[0].innerText);
     }
-  }).hide()
+    catch{
+
+    }
+  })
+    .hide()
     .val('Участок ' + elem.groupCount)
-    .appendTo(labelDiv);
+    .appendTo(labelDiv).blur();
   $('<label/>')
     .append('Участок ' + elem.groupCount)
     .appendTo(labelDiv);
